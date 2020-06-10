@@ -5,7 +5,7 @@ Ext.define('FinalTask2.view.main.cities.AddCitySet', {
     title: 'Add city',
 
     layout: 'anchor',
-    defaults: { anchor: '95%'},
+    defaults: {anchor: '95%'},
 
     items: [{
         xtype: 'textfield',
@@ -21,8 +21,8 @@ Ext.define('FinalTask2.view.main.cities.AddCitySet', {
         bind: {
             disabled: '{isFull}'
         },
-        //listeners: {
-        //click: 'onAddClicked'
-        //}
-    } ]
+        listeners: {
+            click: 'onAddClicked'
+        }
+    }]
 })

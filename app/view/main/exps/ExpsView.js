@@ -4,10 +4,11 @@ Ext.define('FinalTask2.view.main.exps.ExpsView', {
     xtype: 'exps-view',
     requires: [
         'FinalTask2.view.main.exps.ViewModel',
+        'FinalTask2.view.main.exps.ExpsController'
     ],
 
     viewModel: 'exps',
-    //controller: 'main',
+    controller: 'exps',
 
     bodyPadding: 12,
 

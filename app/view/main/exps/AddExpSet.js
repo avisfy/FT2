@@ -23,8 +23,8 @@ Ext.define('FinalTask2.view.main.exps.AddExpSet', {
         bind: {
             disabled: '{isFull}'
         },
-        //listeners: {
-        //click: 'onAddClicked'
-        //}
+        listeners: {
+        click: 'onAddClicked'
+        }
     } ]
 })

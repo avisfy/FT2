@@ -10,26 +10,41 @@ Ext.define('FinalTask2.view.main.exps.ExpsGrid', {
     id: 'ExpsGridPanel',
 
     store: {
-        type: 'exps'
+        type: 'exps',
+        listeners: [{
+            update: 'updateExps'
+        }]
     },
+
+    plugins: [{
+        ptype: 'rowediting',
+        clicksToMoveEditor: 1,
+        autoCancel: false
+    }],
 
     tbar: [
         {
             text: 'Remove selected rows',
-            /*listeners: {
+            listeners: {
                 click: 'onRemoveClicked'
-            }*/
+            }
         }],
 
     columns: [
         {
             text: 'Period',
             dataIndex: 'period',
-            flex: 1
+            flex: 1,
+            editor: {
+                allowBlank: false,
+            }
         }, {
             text: 'Unit',
             dataIndex: 'unit',
-            flex: 1
+            flex: 1,
+            editor: {
+                allowBlank: false,
+            }
         }, {
             xtype: 'checkcolumn',
             header: 'Delete',
@@ -37,10 +52,8 @@ Ext.define('FinalTask2.view.main.exps.ExpsGrid', {
             width: 60
         }],
 
-    /*listeners: [{
-        itemdblclick: 'onRowDblClicked'
-    }, {
+    listeners: [{
         afterrender: 'afterGridReady'
-    }]*/
+    }]
 
 });

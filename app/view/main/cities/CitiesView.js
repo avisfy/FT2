@@ -4,10 +4,11 @@ Ext.define('FinalTask2.view.main.cities.CitiesView', {
     xtype: 'cities-view',
     requires: [
         'FinalTask2.view.main.cities.ViewModel',
+        'FinalTask2.view.main.cities.CitiesController',
     ],
 
     viewModel: 'cities',
-    //controller: 'main',
+    controller: 'cities',
 
     bodyPadding: 12,
 

@@ -4,10 +4,11 @@ Ext.define('FinalTask2.view.main.techs.TechsView', {
     xtype: 'techs-view',
     requires: [
         'FinalTask2.view.main.techs.ViewModel',
+        'FinalTask2.view.main.techs.TechsController'
     ],
 
     viewModel: 'techs',
-    //controller: 'main',
+    controller: 'techs',
 
     bodyPadding: 12,
 

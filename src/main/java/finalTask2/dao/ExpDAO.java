@@ -1,6 +1,6 @@
 package finalTask2.dao;
 
-import finalTask2.model.Person;
+import finalTask2.model.Exp;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Transactional
 @Repository
-public class PersonDAOImpl implements PersonDAO {
+public class ExpDAO {
 
     private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
 
@@ -23,37 +23,33 @@ public class PersonDAOImpl implements PersonDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    @Override
-    public List<Person> allPerson() {
+    public List<Exp> getAll() {
         Session session = sessionFactory.getCurrentSession();
-        return (List<Person>) session.createQuery("from Person").list();
+        return (List<Exp>) session.createQuery("from Exp").list();
     }
 
 
-    @Override
-    public int add(Person person) {
+    public int add(Exp exp) {
         Session session = sessionFactory.getCurrentSession();
-        session.persist(person);
-        return person.getId();
+        session.persist(exp);
+        return exp.getId();
 
     }
 
-    @Override
-    public void delete(Person person) {
+
+    public void delete(Exp exp) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(person);
+        session.delete(exp);
     }
 
 
-    @Override
-    public void edit(Person person) {
+    public void edit(Exp exp) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(person);
+        session.update(exp);
     }
 
-    @Override
-    public Person getById(int id) {
+    public Exp getById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(Person.class, id);
+        return session.get(Exp.class, id);
     }
 }

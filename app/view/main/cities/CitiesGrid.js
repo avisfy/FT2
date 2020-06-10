@@ -10,26 +10,41 @@ Ext.define('FinalTask2.view.main.cities.CitiesGrid', {
     id: 'CitiesGridPanel',
 
     store: {
-        type: 'cities'
+        type: 'cities',
+        listeners: [{
+            update: 'updateCities'
+        }]
     },
+
+    plugins: [{
+        ptype: 'rowediting',
+        clicksToMoveEditor: 1,
+        autoCancel: false
+    }],
 
     tbar: [
         {
             text: 'Remove selected rows',
-            /*listeners: {
+            listeners: {
                 click: 'onRemoveClicked'
-            }*/
+            }
         }],
 
     columns: [
         {
             text: 'Region',
             dataIndex: 'region',
-            flex: 1
+            flex: 1,
+            editor: {
+                allowBlank: false,
+            }
         }, {
             text: 'City',
             dataIndex: 'city',
-            flex: 1
+            flex: 1,
+            editor: {
+                allowBlank: false,
+            }
         }, {
             xtype: 'checkcolumn',
             header: 'Delete',
@@ -37,10 +52,8 @@ Ext.define('FinalTask2.view.main.cities.CitiesGrid', {
             width: 60
         }],
 
-    /*listeners: [{
-        itemdblclick: 'onRowDblClicked'
-    }, {
+    listeners: [{
         afterrender: 'afterGridReady'
-    }]*/
+    }]
 
 });

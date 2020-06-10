@@ -1,6 +1,6 @@
 package finalTask2.dao;
 
-import finalTask2.model.Person;
+import finalTask2.model.City;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Transactional
 @Repository
-public class PersonDAO {
+public class CityDAO {
 
     private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
 
@@ -23,33 +23,33 @@ public class PersonDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    public List<Person> getAll() {
+    public List<City> getAll() {
         Session session = sessionFactory.getCurrentSession();
-        return (List<Person>) session.createQuery("from Person").list();
+        return (List<City>) session.createQuery("from City").list();
     }
 
 
-    public int add(Person person) {
+    public int add(City city) {
         Session session = sessionFactory.getCurrentSession();
-        session.persist(person);
-        return person.getId();
+        session.persist(city);
+        return city.getId();
 
     }
 
 
-    public void delete(Person person) {
+    public void delete(City city) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(person);
+        session.delete(city);
     }
 
 
-    public void edit(Person person) {
+    public void edit(City city) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(person);
+        session.update(city);
     }
 
-    public Person getById(int id) {
+    public City getById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(Person.class, id);
+        return session.get(City.class, id);
     }
 }

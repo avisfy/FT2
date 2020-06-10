@@ -5,7 +5,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
 
     afterGridReady: function () {
         Ext.Ajax.request({
-            url: 'http://localhost:8080/load_person',
+            url: 'http://localhost:8080/person/load',
             method: 'GET',
 
             success: function (response, opts) {
@@ -60,7 +60,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
             birth: birth
         };
         Ext.Ajax.request({
-            url: 'http://localhost:8080/save_person',
+            url: 'http://localhost:8080/person/save',
             method: 'POST',
             jsonData: JSON.stringify(person),
 
@@ -78,27 +78,27 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
     onRemoveClicked: function () {
         var delArr = new Array();
         var s = Ext.getStore('personList');
-        debugger
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))
                 s.remove(record);
             }
         });
-        debugger
 
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/delete_person',
-            method: 'POST',
-            jsonData: JSON.stringify(delArr),
+        if (delArr.length > 0) {
+            Ext.Ajax.request({
+                url: 'http://localhost:8080/p/delete/person',
+                method: 'POST',
+                jsonData: JSON.stringify(delArr),
 
-            success: function (response, opts) {
-                console.log('Deleted person');
-            },
-            failure: function (response, opts) {
-                console.log('Failed deleting person');
-            }
-        });
+                success: function (response, opts) {
+                    console.log('Deleted person');
+                },
+                failure: function (response, opts) {
+                    console.log('Failed deleting person');
+                }
+            });
+        }
     },
 });
 

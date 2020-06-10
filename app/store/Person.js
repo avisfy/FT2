@@ -25,7 +25,7 @@ Ext.define('FinalTask2.store.Person', {
             };
 
             Ext.Ajax.request({
-                url: 'http://localhost:8080/edit_person',
+                url: 'http://localhost:8080/person/edit',
                 method: 'POST',
                 jsonData: JSON.stringify(person),
 

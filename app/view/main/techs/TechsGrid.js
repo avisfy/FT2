@@ -10,15 +10,18 @@ Ext.define('FinalTask2.view.main.techs.TechsGrid', {
     id: 'TechsGridPanel',
 
     store: {
-        type: 'techs'
+        type: 'techs',
+        listeners: [{
+            update: 'updateTechs'
+        }]
     },
 
     tbar: [
         {
             text: 'Remove selected rows',
-            /*listeners: {
+            listeners: {
                 click: 'onRemoveClicked'
-            }*/
+            }
         }],
 
     columns: [
@@ -33,10 +36,8 @@ Ext.define('FinalTask2.view.main.techs.TechsGrid', {
             width: 60
         }],
 
-    /*listeners: [{
-        itemdblclick: 'onRowDblClicked'
-    }, {
+    listeners: [{
         afterrender: 'afterGridReady'
-    }]*/
+    }]
 
 });

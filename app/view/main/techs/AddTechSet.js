@@ -17,8 +17,8 @@ Ext.define('FinalTask2.view.main.techs.AddTechSet', {
         bind: {
             disabled: '{!techField}'
         },
-        //listeners: {
-        //click: 'onAddClicked'
-        //}
+        listeners: {
+        click: 'onAddClicked'
+        }
     } ]
 })
