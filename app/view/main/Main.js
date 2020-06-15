@@ -30,7 +30,7 @@ Ext.define('FinalTask2.view.main.Main', {
 
     items: [{
         xtype: 'person-view',
-        title: 'Person'
+        title: 'Person',
     }, {
         xtype: 'cities-view',
         title: 'Cities'
@@ -44,4 +44,5 @@ Ext.define('FinalTask2.view.main.Main', {
         xtype: 'employees-view',
         title: 'Employees'
     }]
+
 });

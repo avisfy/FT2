@@ -22,6 +22,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
                     });
                     store.add(cityAdd);
                 })
+                console.dir(store);
             },
             failure: function (response, opts) {
                 console.log('Failed loading city');

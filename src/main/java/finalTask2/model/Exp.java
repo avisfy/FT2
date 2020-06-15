@@ -1,6 +1,9 @@
 package finalTask2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "exps", schema = "public")
@@ -15,6 +18,19 @@ public class Exp {
 
     @Column(name = "unit")
     private String unit;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "exp", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    private List<Employee> emps;
+
+    public List<Employee> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Employee> emps) {
+        this.emps = emps;
+    }
+
 
     public Exp() {
         super();

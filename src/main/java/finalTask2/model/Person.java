@@ -1,9 +1,11 @@
 package finalTask2.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "person", schema = "public")
@@ -22,6 +24,18 @@ public class Person {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "birth")
     private Date birth;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    private List<Employee> emps;
+
+    public List<Employee> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Employee> emps) {
+        this.emps = emps;
+    }
 
     public Person() {
         super();

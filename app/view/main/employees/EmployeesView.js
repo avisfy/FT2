@@ -3,7 +3,13 @@ Ext.define('FinalTask2.view.main.employees.EmployeesView', {
 
     xtype: 'employees-view',
 
-    //controller: 'main',
+    requires: [
+        //'FinalTask2.view.main.cities.ViewModel',
+        'FinalTask2.view.main.employees.EmployeesController',
+    ],
+
+    //viewModel: 'employee',
+    controller: 'employees',
 
     bodyPadding: 12,
 

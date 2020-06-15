@@ -12,6 +12,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
                 console.log('Load person!');
                 var pers = Ext.decode(response.responseText);
                 var store = Ext.getStore('personList');
+                store.removeAll();
 
                 pers.map(function (p) {
                     var persModel = Ext.create('FinalTask2.model.Person', {
@@ -35,7 +36,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
     onAddClicked: function () {
         var vm = this.getViewModel();
         var pers = Ext.create('FinalTask2.model.Person', {
-            surname_name: vm.get('nameField') + ' ' + vm.get('surnameField'),
+            surname_name: vm.get('surnameField') + ' ' + vm.get('nameField'),
             email: vm.get('emailField'),
             birth: vm.get('birthField'),
             needDelete: false
@@ -78,6 +79,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
     onRemoveClicked: function () {
         var delArr = new Array();
         var s = Ext.getStore('personList');
+        console.dir(s);
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))
@@ -87,7 +89,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
 
         if (delArr.length > 0) {
             Ext.Ajax.request({
-                url: 'http://localhost:8080/p/delete/person',
+                url: 'http://localhost:8080/person/delete',
                 method: 'POST',
                 jsonData: JSON.stringify(delArr),
 

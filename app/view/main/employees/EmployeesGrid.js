@@ -16,14 +16,14 @@ Ext.define('FinalTask2.view.main.employees.EmployeesGrid', {
     tbar: [
         {
             text: 'Add employee',
-            /*listeners: {
-                click: 'onRemoveClicked'
-            }*/
+            listeners: {
+                click: 'onAddClicked'
+            }
         }, {
             text: 'Remove selected',
-            /*listeners: {
+            listeners: {
                 click: 'onRemoveClicked'
-            }*/
+            }
         }],
 
     columns: [
@@ -72,10 +72,8 @@ Ext.define('FinalTask2.view.main.employees.EmployeesGrid', {
             width: 55
         }],
 
-    /*listeners: [{
-        itemdblclick: 'onRowDblClicked'
-    }, {
+    listeners: [{
         afterrender: 'afterGridReady'
-    }]*/
+    }]
 
 });

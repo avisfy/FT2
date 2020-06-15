@@ -15,7 +15,6 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-
     @GetMapping(value = "/")
     @ResponseBody
     public String r() {
