@@ -31,7 +31,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesView', {
         flex: 2,
         margin: '0 0 0 5'
     } ],
-    /*listeners: {
+    listeners: {
         beforeshow: 'afterGridReady'
-    }*/
+    }
 });

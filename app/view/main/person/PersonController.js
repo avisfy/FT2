@@ -4,14 +4,16 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
     alias: 'controller.person',
 
     afterGridReady: function () {
+        var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/person/load',
             method: 'GET',
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Load person!');
                 var pers = Ext.decode(response.responseText);
-                var store = Ext.getStore('personList');
+                var store = this.getViewModel().get('persons');
                 store.removeAll();
 
                 pers.map(function (p) {
@@ -42,7 +44,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
             needDelete: false
         });
         this.saveUser(pers);
-        var s = Ext.getStore('personList');
+        var s = this.getViewModel().get('persons');
         s.add(pers);
 
         vm.set('nameField', null);
@@ -78,7 +80,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
 
     onRemoveClicked: function () {
         var delArr = new Array();
-        var s = Ext.getStore('personList');
+        var s = this.getViewModel().get('persons');
         console.dir(s);
         s.each(function (record) {
             if (record.get('needDelete')) {

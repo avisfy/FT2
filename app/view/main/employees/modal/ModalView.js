@@ -12,6 +12,7 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
     controller: 'modal',
     viewModel: 'modal',
 
+
     layout: {
         type: 'anchor'
     },
@@ -24,11 +25,12 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
         displayField: 'surname_name',
         valueField: 'id',
         queryMode: 'local',
-        store: {
-            type: 'person'
-        },
+        // store: {
+        //     type: 'person'
+        // },
         bind: {
-            value: '{personIdField}'
+            value: '{personIdField}',
+            store: '{persons}'
         },
         editable: false
     }, {
@@ -37,11 +39,12 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
         displayField: 'displayCity',
         valueField: 'id',
         queryMode: 'local',
-        store: {
-            type: 'cities'
-        },
+        // store: {
+        //     type: 'cities'
+        // },
         bind: {
-            value: '{cityIdField}'
+            value: '{cityIdField}',
+            store: '{cities}'
         },
         editable: false
     }, {
@@ -50,11 +53,12 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
         displayField: 'techName',
         valueField: 'id',
         queryMode: 'local',
-        store: {
-            type: 'techs'
-        },
+        // store: {
+        //     type: 'techs'
+        // },
         bind: {
-            value: '{techIdField}'
+            value: '{techIdField}',
+            store: '{techs}'
         },
         editable: false
     }, {
@@ -63,11 +67,12 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
         displayField: 'displayExp',
         valueField: 'id',
         queryMode: 'local',
-        store: {
-            type: 'exps'
-        },
+        // store: {
+        //     type: 'exps'
+        // },
         bind: {
-            value: '{expIdField}'
+            value: '{expIdField}',
+            store: '{exps}'
         },
         editable: false
     }],

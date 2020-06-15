@@ -12,26 +12,27 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+
+@RestController
+@RequestMapping(value = "/city")
 public class CityController {
     @Autowired
     private CityService cityService;
 
 
-    @PostMapping(value = "/city/save")
+    @PostMapping(value = "/save")
     public ResponseEntity<Integer> saveCity(@RequestBody City city) {
         Integer newId =  cityService.add(city);
         return new ResponseEntity<>(newId, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/city/load")
-    @ResponseBody
+    @GetMapping(value = "/load")
     public List<City> loadCity() {
         return cityService.getAll();
     }
 
 
-    @PostMapping(value = "/city/delete")
+    @PostMapping(value = "/delete")
     public ResponseEntity deleteCity(@RequestBody List <Integer> deleteIds) {
         City city;
         for(Integer id: deleteIds) {
@@ -42,7 +43,7 @@ public class CityController {
     }
 
 
-    @PostMapping(value = "/city/edit")
+    @PostMapping(value = "/edit")
     public ResponseEntity editCity(@RequestBody City editCity) {
         cityService.edit(editCity);
         return new ResponseEntity(HttpStatus.OK);

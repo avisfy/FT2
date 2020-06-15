@@ -9,11 +9,14 @@ Ext.define('FinalTask2.view.main.cities.CitiesGrid', {
 
     id: 'CitiesGridPanel',
 
-    store: {
-        type: 'cities',
+    /*store: {
+        //type: 'cities',
         listeners: [{
             update: 'updateCities'
         }]
+    },*/
+    bind: {
+        store: '{cities}'
     },
 
     plugins: [{
@@ -52,8 +55,8 @@ Ext.define('FinalTask2.view.main.cities.CitiesGrid', {
             width: 60
         }],
 
-    listeners: [{
+    listeners: {
         afterrender: 'afterGridReady'
-    }]
+    }
 
 });

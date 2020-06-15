@@ -9,11 +9,15 @@ Ext.define('FinalTask2.view.main.techs.TechsGrid', {
 
     id: 'TechsGridPanel',
 
-    store: {
-        type: 'techs',
-        listeners: [{
-            update: 'updateTechs'
-        }]
+    // store: {
+    //     type: 'techs',
+    //     listeners: [{
+    //         update: 'updateTechs'
+    //     }]
+    // },
+
+    bind: {
+        store: '{techs}'
     },
 
     tbar: [

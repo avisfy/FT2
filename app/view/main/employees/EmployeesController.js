@@ -4,14 +4,16 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
     alias: 'controller.employees',
 
     afterGridReady: function () {
+        var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/employee/load',
             method: 'GET',
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Load employee!');
                 var employee= Ext.decode(response.responseText);
-                var store = Ext.getStore('employeesList');
+                var store = this.getViewModel().get('employees');
 
                 employee.map(function (emp) {
                     var e = Ext.create('FinalTask2.model.Employee', {
@@ -43,7 +45,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
 
    onRemoveClicked: function () {
         var delArr = new Array();
-        var s = Ext.getStore('employeesList');
+        var s = this.getViewModel().get('employees');
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))

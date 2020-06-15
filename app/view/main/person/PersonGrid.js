@@ -9,19 +9,22 @@ Ext.define('FinalTask2.view.main.person.PersonGrid', {
 
     id: 'PersonGridPanel',
 
-    store: {
-        type: 'person',
-        listeners: [{
-            update: 'updatePerson'
-
-        }]
+    // store: {
+    //     type: 'person',
+    //     listeners: [{
+    //         update: 'updatePerson'
+    //
+    //     }]
+    // },
+    bind: {
+        store: '{persons}'
     },
 
-    plugins: [{
+    plugins: {
         ptype: 'rowediting',
         clicksToMoveEditor: 1,
         autoCancel: false
-    }],
+    },
 
     tbar: [
         {
@@ -66,8 +69,8 @@ Ext.define('FinalTask2.view.main.person.PersonGrid', {
             width: 60
         }],
 
-    listeners: [{
-        afterrender: 'afterGridReady',
-    }]
+    listeners: {
+        afterrender: 'afterGridReady'
+    }
 
 });

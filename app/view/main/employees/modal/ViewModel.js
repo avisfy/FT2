@@ -1,5 +1,5 @@
 Ext.define('FinalTask2.view.main.employees.modal.ViewModel', {
-    extend: 'Ext.app.ViewModel',
+    extend: 'FinalTask2.view.main.ViewModelMain',
 
     alias: 'viewmodel.modal',
 
@@ -22,6 +22,13 @@ Ext.define('FinalTask2.view.main.employees.modal.ViewModel', {
             } else {
                 return true;
             }
+        }
+    },
+
+    stores: {
+        emps: {
+            model: 'FinalTask2.model.Employee',
+            //autoLoad: true
         }
     }
 });

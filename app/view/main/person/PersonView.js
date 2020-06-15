@@ -32,7 +32,7 @@ Ext.define('FinalTask2.view.main.person.PersonView', {
         margin: '0 0 0 5'
     } ],
 
-    /*listeners: {
+    listeners: {
         beforeshow: 'afterGridReady'
-    }*/
+    }
 });

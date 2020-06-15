@@ -1,5 +1,5 @@
 Ext.define('FinalTask2.view.main.person.ViewModel', {
-    extend: 'Ext.app.ViewModel',
+    extend: 'FinalTask2.view.main.ViewModelMain',
 
     alias: 'viewmodel.person',
 

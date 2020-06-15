@@ -12,14 +12,15 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalController', {
 
 
     loadCity: function() {
+        var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/city/load',
             method: 'GET',
-
+            scope: me,
             success: function (response, opts) {
                 console.log('Load modal city!');
                 var city= Ext.decode(response.responseText);
-                var store = Ext.getStore('citiesList');
+                var store = this.getViewModel().get('cities');
 
                 city.map(function (c) {
                     var cityAdd = Ext.create('FinalTask2.model.City', {
@@ -38,14 +39,15 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalController', {
     },
 
     loadPerson: function () {
+        var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/person/load',
             method: 'GET',
-
+            scope: me,
             success: function (response, opts) {
                 console.log('Load modal person!');
                 var pers = Ext.decode(response.responseText);
-                var store = Ext.getStore('personList');
+                var store = this.getViewModel().get('persons');
 
                 pers.map(function (p) {
                     var persModel = Ext.create('FinalTask2.model.Person', {
@@ -67,14 +69,16 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalController', {
     },
 
     loadExp: function () {
+        var me =  this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/exp/load',
             method: 'GET',
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Load modal exp!');
                 var exp= Ext.decode(response.responseText);
-                var store = Ext.getStore('expsList');
+                var store = this.getViewModel().get('exps');
 
                 exp.map(function (e) {
                     var expAdd = Ext.create('FinalTask2.model.Exp', {
@@ -93,14 +97,16 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalController', {
     },
 
     loadTech: function () {
+        var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/tech/load',
             method: 'GET',
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Load modal tech!');
                 var tech = Ext.decode(response.responseText);
-                var store = Ext.getStore('techsList');
+                var store = this.getViewModel().get('techs');
 
                 tech.map(function (t) {
                     var techAdd = Ext.create('FinalTask2.model.Tech', {
@@ -124,22 +130,26 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalController', {
         var cityId = vm.get('cityIdField');
         var techId = vm.get('techIdField');
         var expId = vm.get('expIdField');
+        debugger
         this.saveEmployee(personId, cityId,
-            techId, expId);
+            techId, expId, this);
     },
 
-    saveEmployee: function (pId, cId, tId, eId) {
+    saveEmployee: function (pId, cId, tId, eId, mt) {
+        var me = mt;
         var empIds = [pId, cId, tId, eId];
         console.log(empIds);
         Ext.Ajax.request({
             url: 'http://localhost:8080/employee/save',
             method: 'POST',
+            scope: me,
             jsonData: JSON.stringify(empIds),
 
             success: function (response, opts) {
                 console.log('Employee saved');
+                debugger
                 var emp = Ext.decode(response.responseText);
-                var store = Ext.getStore('employeesList');
+                var store = this.getViewModel().get('cities');
                 var emp = Ext.create('FinalTask2.model.Employee', {
                     id: emp.id,
                     surname_name: emp.person.surnameName,
@@ -162,69 +172,6 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalController', {
         this.getView().close();
     }
 
-   /* onAddClicked: function () {
-        var vm = this.getViewModel();
-        var cityAdd = Ext.create('FinalTask2.model.City', {
-            city: vm.get('cityField'),
-            region: vm.get('regionField'),
-            needDelete: false
-        });
-
-        this.saveCity(cityAdd);
-        var s = Ext.getStore('citiesList');
-        s.add(cityAdd);
-
-        vm.set('cityField', null);
-        vm.set('regionField', null);
-    },
-
-
-    saveCity: function (c) {
-        var city = {
-            city: c.get('city'),
-            region: c.get('region'),
-        };
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/city/save',
-            method: 'POST',
-            jsonData: JSON.stringify(city),
-
-            success: function (response, opts) {
-                console.log('City saved');
-                var id = Ext.decode(response.responseText);
-                c.set('id', id);
-            },
-            failure: function (response, opts) {
-                console.log('Failed saving city');
-            }
-        })
-    },
-
-    onRemoveClicked: function () {
-        var delArr = new Array();
-        var s = Ext.getStore('citiesList');
-        s.each(function (record) {
-            if (record.get('needDelete')) {
-                delArr.push(record.get('id'))
-                s.remove(record);
-            }
-        });
-
-        if (delArr.length > 0) {
-            Ext.Ajax.request({
-                url: 'http://localhost:8080/city/delete',
-                method: 'POST',
-                jsonData: JSON.stringify(delArr),
-
-                success: function (response, opts) {
-                    console.log('Deleted cities');
-                },
-                failure: function (response, opts) {
-                    console.log('Failed deleting cities');
-                }
-            });
-        }
-    },*/
 });
 
 

@@ -9,8 +9,11 @@ Ext.define('FinalTask2.view.main.employees.EmployeesGrid', {
 
     id: 'EmployeesGridPanel',
 
-    store: {
-        type: 'employees'
+    // store: {
+    //     type: 'employees'
+    // },
+    bind: {
+        store: '{employees}'
     },
 
     tbar: [

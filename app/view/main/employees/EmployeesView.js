@@ -4,11 +4,11 @@ Ext.define('FinalTask2.view.main.employees.EmployeesView', {
     xtype: 'employees-view',
 
     requires: [
-        //'FinalTask2.view.main.cities.ViewModel',
+        'FinalTask2.view.main.ViewModelMain',
         'FinalTask2.view.main.employees.EmployeesController',
     ],
 
-    //viewModel: 'employee',
+    viewModel: 'main',
     controller: 'employees',
 
     bodyPadding: 12,
@@ -27,5 +27,9 @@ Ext.define('FinalTask2.view.main.employees.EmployeesView', {
         xtype: 'employees-set',
         flex: 1,
         margin: '0 5 0 0'
-    }]
+    }],
+
+    listeners: {
+        beforeshow: 'afterGridReady'
+    }
 });

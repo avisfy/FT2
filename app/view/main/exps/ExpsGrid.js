@@ -9,11 +9,15 @@ Ext.define('FinalTask2.view.main.exps.ExpsGrid', {
 
     id: 'ExpsGridPanel',
 
-    store: {
-        type: 'exps',
-        listeners: [{
-            update: 'updateExps'
-        }]
+    // store: {
+    //     type: 'exps',
+    //     listeners: [{
+    //         update: 'updateExps'
+    //     }]
+    // },
+
+    bind: {
+        store: '{exps}'
     },
 
     plugins: [{

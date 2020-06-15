@@ -30,5 +30,9 @@ Ext.define('FinalTask2.view.main.exps.ExpsView', {
         xtype: 'exps-grid-set',
         flex: 2,
         margin: '0 0 0 5'
-    } ]
+    } ],
+
+    listeners: {
+        beforeshow: 'afterGridReady'
+    }
 });

@@ -4,14 +4,16 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
     alias: 'controller.techs',
 
     afterGridReady: function () {
+        var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/tech/load',
             method: 'GET',
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Load tech!');
                 var tech = Ext.decode(response.responseText);
-                var store = Ext.getStore('techsList');
+                var store = this.getViewModel().get('techs');;
 
                 tech.map(function (t) {
                     var techAdd = Ext.create('FinalTask2.model.Tech', {
@@ -37,7 +39,7 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
         });
 
         this.saveTech(expAdd);
-        var s = Ext.getStore('techsList');
+        var s = this.getViewModel().get('techs');;
         s.add(expAdd);
 
         vm.set('techField', null);
@@ -66,7 +68,7 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
 
     onRemoveClicked: function () {
         var delArr = new Array();
-        var s = Ext.getStore('techsList');
+        var s = this.getViewModel().get('techs');;
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))

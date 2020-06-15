@@ -4,14 +4,16 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
     alias: 'controller.cities',
 
     afterGridReady: function () {
+        var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/city/load',
             method: 'GET',
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Load city!');
                 var city= Ext.decode(response.responseText);
-                var store = Ext.getStore('citiesList');
+                var store = this.getViewModel().get('cities');
 
                 city.map(function (c) {
                     var cityAdd = Ext.create('FinalTask2.model.City', {
@@ -31,6 +33,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
     },
 
 
+
     onAddClicked: function () {
         var vm = this.getViewModel();
         var cityAdd = Ext.create('FinalTask2.model.City', {
@@ -40,7 +43,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
         });
 
         this.saveCity(cityAdd);
-        var s = Ext.getStore('citiesList');
+        var s = this.getViewModel().get('cities');
         s.add(cityAdd);
 
         vm.set('cityField', null);
@@ -71,7 +74,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
 
     onRemoveClicked: function () {
         var delArr = new Array();
-        var s = Ext.getStore('citiesList');
+        var s = this.getViewModel().get('cities');
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))

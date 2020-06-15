@@ -4,14 +4,17 @@ Ext.define('FinalTask2.view.main.exps.ExpsController', {
     alias: 'controller.exps',
 
     afterGridReady: function () {
+        var me = this;
+
         Ext.Ajax.request({
             url: 'http://localhost:8080/exp/load',
             method: 'GET',
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Load exp!');
                 var exp= Ext.decode(response.responseText);
-                var store = Ext.getStore('expsList');
+                var store = this.getViewModel().get('exps');
 
                 exp.map(function (e) {
                     var expAdd = Ext.create('FinalTask2.model.Exp', {
@@ -39,7 +42,7 @@ Ext.define('FinalTask2.view.main.exps.ExpsController', {
         });
 
         this.saveExp(expAdd);
-        var s = Ext.getStore('expsList');
+        var s = this.getViewModel().get('exps');
         s.add(expAdd);
 
         vm.set('periodField', null);
@@ -70,7 +73,7 @@ Ext.define('FinalTask2.view.main.exps.ExpsController', {
 
     onRemoveClicked: function () {
         var delArr = new Array();
-        var s = Ext.getStore('expsList');
+        var s = this.getViewModel().get('exps');
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))
