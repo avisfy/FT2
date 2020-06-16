@@ -7,9 +7,9 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
 
     requires: [
         'FinalTask2.view.main.employees.modal.ViewModel',
-        'FinalTask2.view.main.employees.modal.ModalController',
+        'FinalTask2.view.main.employees.EmployeesController',
     ],
-    controller: 'modal',
+    controller: 'employees',
     viewModel: 'modal',
 
 

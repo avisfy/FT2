@@ -75,8 +75,8 @@ Ext.define('FinalTask2.view.main.employees.EmployeesGrid', {
             width: 55
         }],
 
-    listeners: [{
+    listeners: {
         afterrender: 'afterGridReady'
-    }]
+    }
 
 });

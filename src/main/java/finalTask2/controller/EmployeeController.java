@@ -6,33 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping(value = "/employee")
 public class EmployeeController {
     @Autowired
     private EmployeeService empService;
 
-    @PostMapping(value = "/employee/save")
+    @PostMapping(value = "/save")
     public ResponseEntity<Employee> saveEmp(@RequestBody List<Integer> empIds) {
         int newId = empService.add(empIds.get(0), empIds.get(1), empIds.get(2), empIds.get(3));
         Employee newEmp = empService.getById(newId);
         return new ResponseEntity<>(newEmp, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/employee/load")
-    @ResponseBody
+    @GetMapping(value = "/load")
     public List<Employee> loadEmp() {
         return empService.getAll();
     }
 
 
-    @PostMapping(value = "/employee/delete")
+    @PostMapping(value = "/delete")
     public ResponseEntity deleteEmps(@RequestBody List<Integer> deleteIds) {
         Employee emp;
         for (Integer id : deleteIds) {

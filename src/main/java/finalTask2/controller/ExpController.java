@@ -8,33 +8,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping(value = "/exp")
 public class ExpController {
     @Autowired
     private ExpService expService;
 
 
-    @PostMapping(value = "/exp/save")
+    @PostMapping(value = "/save")
     public ResponseEntity<Integer> saveExp(@RequestBody Exp exp) {
         Integer newId =  expService.add(exp);
         return new ResponseEntity<>(newId, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/exp/load")
-    @ResponseBody
+    @GetMapping(value = "/load")
     public List<Exp> loadExp() {
         return expService.getAll();
     }
 
 
-    @PostMapping(value = "/exp/delete")
+    @PostMapping(value = "/delete")
     public ResponseEntity deleteExp(@RequestBody List <Integer> deleteIds) {
         Exp exp;
         for(Integer id: deleteIds) {
@@ -45,7 +42,7 @@ public class ExpController {
     }
 
 
-    @PostMapping(value = "/exp/edit")
+    @PostMapping(value = "/edit")
     public ResponseEntity editExp(@RequestBody Exp expEdit) {
         expService.edit(expEdit);
         return new ResponseEntity(HttpStatus.OK);

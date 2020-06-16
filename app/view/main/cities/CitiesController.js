@@ -41,6 +41,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
             region: vm.get('regionField'),
             needDelete: false
         });
+        debugger
 
         this.saveCity(cityAdd);
         var s = this.getViewModel().get('cities');
@@ -56,6 +57,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
             city: c.get('city'),
             region: c.get('region'),
         };
+        debugger
         Ext.Ajax.request({
             url: 'http://localhost:8080/city/save',
             method: 'POST',

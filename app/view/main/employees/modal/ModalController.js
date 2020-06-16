@@ -130,26 +130,27 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalController', {
         var cityId = vm.get('cityIdField');
         var techId = vm.get('techIdField');
         var expId = vm.get('expIdField');
-        debugger
         this.saveEmployee(personId, cityId,
             techId, expId, this);
     },
 
     saveEmployee: function (pId, cId, tId, eId, mt) {
-        var me = mt;
+        debugger
+        var me = this;
+        var vm = this.getViewModel();
         var empIds = [pId, cId, tId, eId];
         console.log(empIds);
         Ext.Ajax.request({
             url: 'http://localhost:8080/employee/save',
             method: 'POST',
-            scope: me,
             jsonData: JSON.stringify(empIds),
-
+            scope: me,
             success: function (response, opts) {
                 console.log('Employee saved');
                 debugger
                 var emp = Ext.decode(response.responseText);
-                var store = this.getViewModel().get('cities');
+                debugger
+                var store = this.getViewModel().get('employees');
                 var emp = Ext.create('FinalTask2.model.Employee', {
                     id: emp.id,
                     surname_name: emp.person.surnameName,

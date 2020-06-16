@@ -10,33 +10,32 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping(value = "/person")
 public class PersonController {
     @Autowired
     private PersonService personService;
 
     @GetMapping(value = "/")
-    @ResponseBody
     public String r() {
         String str = "started";
         return str;
     }
 
-    @RequestMapping(value = "/person/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<Integer> savePerson(@RequestBody Person pers) {
         Integer newId =  personService.add(pers);
         System.out.println(pers);
         return new ResponseEntity<>(newId, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/person/load", method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/load", method = RequestMethod.GET)
     public List<Person> loadPerson() {
         return personService.getAll();
     }
 
 
-    @RequestMapping(value = "/person/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResponseEntity deletePerson(@RequestBody List <Integer> deleteIds) {
         Person person;
         for(Integer id: deleteIds) {
@@ -47,7 +46,7 @@ public class PersonController {
     }
 
 
-    @RequestMapping(value = "/person/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ResponseEntity editPerson(@RequestBody Person editPerson) {
         personService.edit(editPerson);
         return new ResponseEntity(HttpStatus.OK);

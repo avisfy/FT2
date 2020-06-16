@@ -2,6 +2,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesView', {
     extend: 'Ext.panel.Panel',
 
     xtype: 'employees-view',
+    id: 'empv',
 
     requires: [
         'FinalTask2.view.main.ViewModelMain',

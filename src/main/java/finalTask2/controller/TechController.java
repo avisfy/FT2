@@ -7,33 +7,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping(value = "/tech")
 public class TechController {
     @Autowired
     private TechService techService;
 
 
-    @PostMapping(value = "/tech/save")
+    @PostMapping(value = "/save")
     public ResponseEntity<Integer> saveTech(@RequestBody Tech tech) {
         Integer newId =  techService.add(tech);
         return new ResponseEntity<>(newId, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/tech/load")
-    @ResponseBody
+    @GetMapping(value = "/load")
     public List<Tech> loadTech() {
         return techService.getAll();
     }
 
 
-    @PostMapping(value = "/tech/delete")
+    @PostMapping(value = "/delete")
     public ResponseEntity deleteTech(@RequestBody List <Integer> deleteIds) {
         Tech tech;
         for(Integer id: deleteIds) {
@@ -44,7 +41,7 @@ public class TechController {
     }
 
 
-    @PostMapping(value = "/tech/edit")
+    @PostMapping(value = "/edit")
     public ResponseEntity editExp(@RequestBody Tech techEdit) {
         techService.edit(techEdit);
         return new ResponseEntity(HttpStatus.OK);
