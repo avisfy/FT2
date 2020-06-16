@@ -4,6 +4,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
     alias: 'controller.cities',
 
     loadCity: function () {
+        //var me = Ext.ComponentQuery.query('#cityv')[0];
         var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/city/load',
