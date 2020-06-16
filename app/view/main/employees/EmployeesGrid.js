@@ -73,10 +73,5 @@ Ext.define('FinalTask2.view.main.employees.EmployeesGrid', {
             header: 'Delete',
             dataIndex: 'needDelete',
             width: 55
-        }],
-
-    listeners: {
-        afterrender: 'afterGridReady'
-    }
-
+        }]
 });

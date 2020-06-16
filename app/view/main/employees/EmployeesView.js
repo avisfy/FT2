@@ -28,9 +28,5 @@ Ext.define('FinalTask2.view.main.employees.EmployeesView', {
         xtype: 'employees-set',
         flex: 1,
         margin: '0 5 0 0'
-    }],
-
-    listeners: {
-        beforeshow: 'afterGridReady'
-    }
+    }]
 });

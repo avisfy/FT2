@@ -67,10 +67,6 @@ Ext.define('FinalTask2.view.main.person.PersonGrid', {
             header: 'Delete',
             dataIndex: 'needDelete',
             width: 60
-        }],
-
-    listeners: {
-        afterrender: 'afterGridReady'
-    }
+        }]
 
 });

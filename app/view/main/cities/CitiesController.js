@@ -3,7 +3,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
 
     alias: 'controller.cities',
 
-    afterGridReady: function () {
+    loadCity: function () {
         var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/city/load',

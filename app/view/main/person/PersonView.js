@@ -31,8 +31,7 @@ Ext.define('FinalTask2.view.main.person.PersonView', {
         flex: 2,
         margin: '0 0 0 5'
     } ],
-
     listeners: {
-        beforeshow: 'afterGridReady'
+        afterrender: 'loadTabs'
     }
 });

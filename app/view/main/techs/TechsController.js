@@ -3,7 +3,7 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
 
     alias: 'controller.techs',
 
-    afterGridReady: function () {
+    loadTech: function () {
         var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/tech/load',

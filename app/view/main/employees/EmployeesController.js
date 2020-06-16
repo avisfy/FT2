@@ -3,7 +3,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
 
     alias: 'controller.employees',
 
-    afterGridReady: function () {
+    loadEmployee: function () {
         var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/employee/load',
@@ -70,129 +70,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
     },
 
 
-
-
-    beforeViewReady: function () {
-        this.loadPerson();
-        this.loadCity();
-        this.loadExp();
-        this.loadTech();
-    },
-
-
-    loadCity: function() {
-        var me = this;
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/city/load',
-            method: 'GET',
-            scope: me,
-            success: function (response, opts) {
-                console.log('Load modal city!');
-                var city= Ext.decode(response.responseText);
-                var store = this.getViewModel().get('cities');
-
-                city.map(function (c) {
-                    var cityAdd = Ext.create('FinalTask2.model.City', {
-                        id: c.id,
-                        city: c.city,
-                        region: c.region,
-                        needDelete: false
-                    });
-                    store.add(cityAdd);
-                })
-            },
-            failure: function (response, opts) {
-                console.log('Failed loading modal city');
-            }
-        })
-    },
-
-    loadPerson: function () {
-        var me = this;
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/person/load',
-            method: 'GET',
-            scope: me,
-            success: function (response, opts) {
-                console.log('Load modal person!');
-                var pers = Ext.decode(response.responseText);
-                var store = this.getViewModel().get('persons');
-
-                pers.map(function (p) {
-                    var persModel = Ext.create('FinalTask2.model.Person', {
-                        id: p.id,
-                        surname_name: p.surnameName,
-                        email: p.email,
-                        //dateOfBirth: new Date(Date.parse(user.birth)),
-                        birth: p.birth,
-                        needDelete: false
-                    });
-                    store.add(persModel);
-                })
-                console.log(store);
-            },
-            failure: function (response, opts) {
-                console.log('Failed loading modal person');
-            }
-        })
-    },
-
-    loadExp: function () {
-        var me =  this;
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/exp/load',
-            method: 'GET',
-            scope: me,
-
-            success: function (response, opts) {
-                console.log('Load modal exp!');
-                var exp= Ext.decode(response.responseText);
-                var store = this.getViewModel().get('exps');
-
-                exp.map(function (e) {
-                    var expAdd = Ext.create('FinalTask2.model.Exp', {
-                        id: e.id,
-                        period: e.period,
-                        unit: e.unit,
-                        needDelete: false
-                    });
-                    store.add(expAdd);
-                })
-            },
-            failure: function (response, opts) {
-                console.log('Failed loading modal exp');
-            }
-        })
-    },
-
-    loadTech: function () {
-        var me = this;
-        Ext.Ajax.request({
-            url: 'http://localhost:8080/tech/load',
-            method: 'GET',
-            scope: me,
-
-            success: function (response, opts) {
-                console.log('Load modal tech!');
-                var tech = Ext.decode(response.responseText);
-                var store = this.getViewModel().get('techs');
-
-                tech.map(function (t) {
-                    var techAdd = Ext.create('FinalTask2.model.Tech', {
-                        id: t.id,
-                        techName: t.techName,
-                        needDelete: false
-                    });
-                    store.add(techAdd);
-                })
-            },
-            failure: function (response, opts) {
-                console.log('Failed loading modal tech');
-            }
-        })
-    },
-
-
+    //------------------------modal-------------------------
     onSaveClicked: function () {
         var vm = this.getViewModel();
         var empview = Ext.ComponentQuery.query('#empv')[0];

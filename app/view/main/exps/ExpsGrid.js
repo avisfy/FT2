@@ -54,10 +54,6 @@ Ext.define('FinalTask2.view.main.exps.ExpsGrid', {
             header: 'Delete',
             dataIndex: 'needDelete',
             width: 60
-        }],
-
-    listeners: [{
-        afterrender: 'afterGridReady'
-    }]
+        }]
 
 });

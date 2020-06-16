@@ -1,9 +1,24 @@
 Ext.define('FinalTask2.view.main.person.PersonController', {
     extend: 'Ext.app.ViewController',
 
+    mixins: {
+        citiesController: 'FinalTask2.view.main.cities.CitiesController',
+        techsController: 'FinalTask2.view.main.techs.TechsController',
+        expsController: 'FinalTask2.view.main.exps.ExpsController',
+        employeesController: 'FinalTask2.view.main.employees.EmployeesController'
+    },
+
     alias: 'controller.person',
 
-    afterGridReady: function () {
+    loadTabs: function () {
+        this.loadPerson();
+        this.loadCity();
+        this.loadExp();
+        this.loadTech();
+        this.loadEmployee();
+    },
+
+    loadPerson: function () {
         var me = this;
         Ext.Ajax.request({
             url: 'http://localhost:8080/person/load',

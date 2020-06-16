@@ -38,10 +38,5 @@ Ext.define('FinalTask2.view.main.techs.TechsGrid', {
             header: 'Delete',
             dataIndex: 'needDelete',
             width: 60
-        }],
-
-    listeners: [{
-        afterrender: 'afterGridReady'
-    }]
-
+        }]
 });

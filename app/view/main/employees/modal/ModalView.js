@@ -88,10 +88,6 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
         bind: {
             disabled: '{isFull}'
         },
-    }],
-
-    listeners: {
-        beforerender: 'beforeViewReady'
-    }
+    }]
 
 })

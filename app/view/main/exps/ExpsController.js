@@ -3,7 +3,7 @@ Ext.define('FinalTask2.view.main.exps.ExpsController', {
 
     alias: 'controller.exps',
 
-    afterGridReady: function () {
+    loadExp: function () {
         var me = this;
 
         Ext.Ajax.request({

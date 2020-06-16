@@ -30,9 +30,5 @@ Ext.define('FinalTask2.view.main.techs.TechsView', {
         xtype: 'techs-grid-set',
         flex: 2,
         margin: '0 0 0 5'
-    } ],
-
-    listeners: {
-        beforeshow: 'afterGridReady'
-    }
+    }]
 });

@@ -53,10 +53,6 @@ Ext.define('FinalTask2.view.main.cities.CitiesGrid', {
             header: 'Delete',
             dataIndex: 'needDelete',
             width: 60
-        }],
-
-    listeners: {
-        afterrender: 'afterGridReady'
-    }
+        }]
 
 });
