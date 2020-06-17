@@ -3,19 +3,21 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
 
     alias: 'controller.employees',
 
+
     loadEmployee: function () {
+        //debugger;
         var me = this;
-        debugger;
         Ext.Ajax.request({
             url: 'http://localhost:8080/employee/load',
             method: 'GET',
-            scope: this,
+            scope: me,
+            async: false,
 
             success: function (response, opts) {
                 console.log('Load employee!');
-                debugger;
                 var employee= Ext.decode(response.responseText);
-                var store = this.getView().lookupViewModel().get('employees');
+                //debugger;
+                var store = this.getViewModel().get('employees');
                 store.removeAll();
 
                 employee.map(function (emp) {
@@ -43,6 +45,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
 
     onAddClicked: function () {
         var window = Ext.create('FinalTask2.view.main.employees.modal.ModalView');
+        //window.setDefaultListenerScope(true);
         var m = window.show();
     },
 
@@ -65,6 +68,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
 
                 success: function (response, opts) {
                     console.log('Deleted employees');
+                    me.loadEmployee();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting employees');
@@ -77,35 +81,26 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
     //------------------------modal-------------------------
     onSaveClicked: function () {
         var vm = this.getViewModel();
-        var empview = Ext.ComponentQuery.query('#empv')[0];
         var personId = vm.get('personIdField');
         var cityId = vm.get('cityIdField');
         var techId = vm.get('techIdField');
         var expId = vm.get('expIdField');
-        this.saveEmployee(personId, cityId, techId, expId);
+        this.saveEmployee(personId, cityId, techId, expId, this);
         this.loadEmployee();
         this.getView().close();
     },
 
-    saveEmployee: function (personId, cityId, techId, expId) {
+    saveEmployee: function (personId, cityId, techId, expId, me) {
         var empIds = [personId, cityId, techId, expId];
+
         Ext.Ajax.request({
             url: 'http://localhost:8080/employee/save',
             method: 'POST',
             jsonData: JSON.stringify(empIds),
             async: false,
+            scope: me,
             success: function (response, opts) {
                 console.log('Employee saved');
-                // e.set('id', emp.id);
-                // e.set('surname_name', emp.person.surnameName);
-                // e.set('techName', emp.tech.techName);
-                // e.set('period', emp.exp.period);
-                // e.set('unit', emp.exp.unit);
-                // e.set('region', emp.city.region);
-                // e.set('city', emp.city.city);
-                // e.set('email', emp.person.email);
-                // e.set('birth', emp.person.birth);
-                // console.log(e);
             },
             failure: function (response, opts) {
                 console.log('Failed saving employee');

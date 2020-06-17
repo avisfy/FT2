@@ -23,12 +23,5 @@ Ext.define('FinalTask2.view.main.employees.modal.ViewModel', {
                 return true;
             }
         }
-    },
-
-    stores: {
-        emps: {
-            model: 'FinalTask2.model.Employee',
-            //autoLoad: true
-        }
     }
 });

@@ -5,10 +5,10 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
     height: 500,
     width: 400,
 
-    requires: [
+    /*requires: [
         'FinalTask2.view.main.employees.modal.ViewModel',
-        'FinalTask2.view.main.employees.EmployeesController',
-    ],
+        'FinalTask2.view.main.employees.EmployeesController'
+    ],*/
     controller: 'employees',
 
 
