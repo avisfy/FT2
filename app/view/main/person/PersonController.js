@@ -1,22 +1,8 @@
 Ext.define('FinalTask2.view.main.person.PersonController', {
     extend: 'Ext.app.ViewController',
 
-    mixins: {
-        citiesController: 'FinalTask2.view.main.cities.CitiesController',
-        techsController: 'FinalTask2.view.main.techs.TechsController',
-        expsController: 'FinalTask2.view.main.exps.ExpsController',
-        employeesController: 'FinalTask2.view.main.employees.EmployeesController'
-    },
-
     alias: 'controller.person',
 
-    loadTabs: function () {
-        this.loadPerson();
-        this.loadCity();
-        this.loadExp();
-        this.loadTech();
-        this.loadEmployee();
-    },
 
     loadPerson: function () {
         var me = this;
@@ -52,15 +38,15 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
 
     onAddClicked: function () {
         var vm = this.getViewModel();
-        var pers = Ext.create('FinalTask2.model.Person', {
-            surname_name: vm.get('surnameField') + ' ' + vm.get('nameField'),
+        var dateBirth = vm.get('birthField').toISOString();
+        var birth = dateBirth.slice(0, dateBirth.indexOf('T'));
+        var pers = {
+            surnameName: vm.get('surnameField') + ' ' + vm.get('nameField'),
             email: vm.get('emailField'),
-            birth: vm.get('birthField'),
-            needDelete: false
-        });
-        this.saveUser(pers);
-        var s = this.getViewModel().get('persons');
-        s.add(pers);
+            birth: birth
+        };
+        this.saveUser(pers, this);
+
 
         vm.set('nameField', null);
         vm.set('surnameField', null);
@@ -69,49 +55,43 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
     },
 
 
-    saveUser: function (pers) {
-        var dateBirth = pers.get('birth').toISOString();
-        var birth = dateBirth.slice(0, dateBirth.indexOf('T'));
-        var person = {
-            surnameName: pers.get('surname_name'),
-            email: pers.get('email'),
-            birth: birth
-        };
+    saveUser: function (person, me) {
         Ext.Ajax.request({
             url: 'http://localhost:8080/person/save',
             method: 'POST',
             jsonData: JSON.stringify(person),
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Person saved');
-                var id = Ext.decode(response.responseText);
-                pers.set('id', id);
+                this.loadPerson();
             },
             failure: function (response, opts) {
                 console.log('Failed saving person');
             }
         })
+
     },
 
     onRemoveClicked: function () {
         var delArr = new Array();
         var s = this.getViewModel().get('persons');
-        console.dir(s);
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))
-                s.remove(record);
             }
         });
 
         if (delArr.length > 0) {
+            var me = this;
             Ext.Ajax.request({
                 url: 'http://localhost:8080/person/delete',
                 method: 'POST',
                 jsonData: JSON.stringify(delArr),
-
+                scope: me,
                 success: function (response, opts) {
                     console.log('Deleted person');
+                    this.loadPerson();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting person');

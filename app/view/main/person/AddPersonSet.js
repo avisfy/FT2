@@ -28,7 +28,7 @@ Ext.define('FinalTask2.view.main.person.AddPersonSet', {
         xtype: 'button',
         text: 'Add new person!',
         bind: {
-            disabled: '{isFull}'
+            disabled: '{isPerson}'
         },
         listeners: {
             click: 'onAddClicked'

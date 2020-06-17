@@ -9,7 +9,7 @@ Ext.define('FinalTask2.view.main.cities.ViewModel', {
     },
 
     formulas: {
-        isFull: function (get) {
+        isFullCity: function (get) {
             var city = get('cityField');
             var region = get('regionField');
             if (city && region) {

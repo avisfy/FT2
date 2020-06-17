@@ -50,17 +50,17 @@ public class EmployeeService {
         return empDAO.getAll();
     }
 
-    public int add(Employee emp) {
-        return empDAO.add(emp);
+    public void  add(Employee emp) {
+         empDAO.add(emp);
     }
 
-    public int add(int personId, int cityId, int techId, int expId) {
+    public void add(int personId, int cityId, int techId, int expId) {
         Person pers = personDAO.getById(personId);
         City city = cityDAO.getById(cityId);
         Tech tech = techDAO.getById(techId);
         Exp exp = expDAO.getById(expId);
         Employee emp = new Employee(pers, city, tech, exp);
-        return empDAO.add(emp);
+        empDAO.add(emp);
     }
 
     public void delete(Employee emp) {

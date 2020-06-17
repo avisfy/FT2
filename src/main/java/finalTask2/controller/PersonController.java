@@ -23,10 +23,10 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<Integer> savePerson(@RequestBody Person pers) {
-        Integer newId =  personService.add(pers);
+    public ResponseEntity savePerson(@RequestBody Person pers) {
+        personService.add(pers);
         System.out.println(pers);
-        return new ResponseEntity<>(newId, HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/load", method = RequestMethod.GET)

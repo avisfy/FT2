@@ -21,9 +21,9 @@ public class CityController {
 
 
     @PostMapping(value = "/save")
-    public ResponseEntity<Integer> saveCity(@RequestBody City city) {
-        Integer newId =  cityService.add(city);
-        return new ResponseEntity<>(newId, HttpStatus.OK);
+    public ResponseEntity saveCity(@RequestBody City city) {
+        cityService.add(city);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping(value = "/load")

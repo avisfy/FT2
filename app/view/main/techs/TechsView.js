@@ -7,7 +7,6 @@ Ext.define('FinalTask2.view.main.techs.TechsView', {
         'FinalTask2.view.main.techs.TechsController'
     ],
 
-    viewModel: 'techs',
     controller: 'techs',
 
     bodyPadding: 12,

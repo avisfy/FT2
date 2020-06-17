@@ -11,7 +11,7 @@ Ext.define('FinalTask2.view.main.person.ViewModel', {
     },
 
     formulas: {
-        isFull: function (get) {
+        isPerson: function (get) {
             var name = get('nameField');
             var surname = get('surnameField');
             var email = get('emailField');

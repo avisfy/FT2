@@ -10,8 +10,8 @@ Ext.define('FinalTask2.view.main.Main', {
         'FinalTask2.view.main.employees.EmployeesView'
     ],
 
-    //viewModel: 'signIn',
-    //controller: 'main',
+    viewModel: 'main',
+    controller: 'main',
 
     title: 'Task3',
     tabBarHeaderPosition: 2,
@@ -43,6 +43,9 @@ Ext.define('FinalTask2.view.main.Main', {
     }, {
         xtype: 'employees-view',
         title: 'Employees'
-    }]
+    }],
 
+    listeners: {
+        afterrender: 'loadTabs'
+    }
 });

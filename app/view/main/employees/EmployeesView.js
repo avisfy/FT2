@@ -9,7 +9,6 @@ Ext.define('FinalTask2.view.main.employees.EmployeesView', {
         'FinalTask2.view.main.employees.EmployeesController',
     ],
 
-    viewModel: 'main',
     controller: 'employees',
 
     bodyPadding: 12,

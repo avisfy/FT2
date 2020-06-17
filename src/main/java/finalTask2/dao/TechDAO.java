@@ -30,11 +30,9 @@ public class TechDAO {
     }
 
 
-    public int add(Tech tech) {
+    public void add(Tech tech) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(tech);
-        return tech.getId();
-
     }
 
 

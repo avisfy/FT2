@@ -15,6 +15,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
                 console.log('Load city!');
                 var city= Ext.decode(response.responseText);
                 var store = this.getViewModel().get('cities');
+                store.removeAll();
 
                 city.map(function (c) {
                     var cityAdd = Ext.create('FinalTask2.model.City', {
@@ -25,7 +26,6 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
                     });
                     store.add(cityAdd);
                 })
-                console.dir(store);
             },
             failure: function (response, opts) {
                 console.log('Failed loading city');
@@ -37,37 +37,27 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
 
     onAddClicked: function () {
         var vm = this.getViewModel();
-        var cityAdd = Ext.create('FinalTask2.model.City', {
+        var city = {
             city: vm.get('cityField'),
-            region: vm.get('regionField'),
-            needDelete: false
-        });
-        debugger
-
-        this.saveCity(cityAdd);
-        var s = this.getViewModel().get('cities');
-        s.add(cityAdd);
+            region: vm.get('regionField')
+        };
+        this.saveCity(city, this);
 
         vm.set('cityField', null);
         vm.set('regionField', null);
     },
 
 
-    saveCity: function (c) {
-        var city = {
-            city: c.get('city'),
-            region: c.get('region'),
-        };
-        debugger
+    saveCity: function (city, me) {
         Ext.Ajax.request({
             url: 'http://localhost:8080/city/save',
             method: 'POST',
             jsonData: JSON.stringify(city),
+            scope: me,
 
             success: function (response, opts) {
                 console.log('City saved');
-                var id = Ext.decode(response.responseText);
-                c.set('id', id);
+                this.loadCity();
             },
             failure: function (response, opts) {
                 console.log('Failed saving city');
@@ -81,18 +71,20 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))
-                s.remove(record);
             }
         });
 
         if (delArr.length > 0) {
+            var me = this;
             Ext.Ajax.request({
                 url: 'http://localhost:8080/city/delete',
                 method: 'POST',
                 jsonData: JSON.stringify(delArr),
+                scope: me,
 
                 success: function (response, opts) {
                     console.log('Deleted cities');
+                    this.loadCity();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting cities');

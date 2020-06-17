@@ -7,9 +7,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesView', {
         'FinalTask2.view.main.cities.CitiesController',
     ],
 
-    viewModel: 'cities',
     controller: 'cities',
-    id: 'cityv',
 
     bodyPadding: 12,
 

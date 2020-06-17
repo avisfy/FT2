@@ -17,10 +17,9 @@ public class EmployeeController {
     private EmployeeService empService;
 
     @PostMapping(value = "/save")
-    public ResponseEntity<Employee> saveEmp(@RequestBody List<Integer> empIds) {
-        int newId = empService.add(empIds.get(0), empIds.get(1), empIds.get(2), empIds.get(3));
-        Employee newEmp = empService.getById(newId);
-        return new ResponseEntity<>(newEmp, HttpStatus.OK);
+    public ResponseEntity saveEmp(@RequestBody List<Integer> empIds) {
+        empService.add(empIds.get(0), empIds.get(1), empIds.get(2), empIds.get(3));
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping(value = "/load")

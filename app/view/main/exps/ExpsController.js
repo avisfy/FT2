@@ -13,8 +13,9 @@ Ext.define('FinalTask2.view.main.exps.ExpsController', {
 
             success: function (response, opts) {
                 console.log('Load exp!');
-                var exp= Ext.decode(response.responseText);
+                var exp = Ext.decode(response.responseText);
                 var store = this.getViewModel().get('exps');
+                store.removeAll();
 
                 exp.map(function (e) {
                     var expAdd = Ext.create('FinalTask2.model.Exp', {
@@ -35,35 +36,27 @@ Ext.define('FinalTask2.view.main.exps.ExpsController', {
 
     onAddClicked: function () {
         var vm = this.getViewModel();
-        var expAdd = Ext.create('FinalTask2.model.Exp', {
+        var exp = {
             period: vm.get('periodField'),
             unit: vm.get('unitField'),
-            needDelete: false
-        });
-
-        this.saveExp(expAdd);
-        var s = this.getViewModel().get('exps');
-        s.add(expAdd);
+        };
+        this.saveExp(exp, this);
 
         vm.set('periodField', null);
         vm.set('unitField', null);
     },
 
 
-    saveExp: function (e) {
-        var exp = {
-            period: e.get('period'),
-            unit: e.get('unit'),
-        };
+    saveExp: function (exp, me) {
         Ext.Ajax.request({
             url: 'http://localhost:8080/exp/save',
             method: 'POST',
             jsonData: JSON.stringify(exp),
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Exp saved');
-                var id = Ext.decode(response.responseText);
-                e.set('id', id);
+                this.loadExp();
             },
             failure: function (response, opts) {
                 console.log('Failed saving exp');
@@ -77,18 +70,20 @@ Ext.define('FinalTask2.view.main.exps.ExpsController', {
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))
-                s.remove(record);
             }
         });
 
         if (delArr.length > 0) {
+            var me = this;
             Ext.Ajax.request({
                 url: 'http://localhost:8080/exp/delete',
                 method: 'POST',
                 jsonData: JSON.stringify(delArr),
+                scope: me,
 
                 success: function (response, opts) {
                     console.log('Deleted exps');
+                    this.loadExp();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting exps');

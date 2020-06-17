@@ -13,7 +13,8 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
             success: function (response, opts) {
                 console.log('Load tech!');
                 var tech = Ext.decode(response.responseText);
-                var store = this.getViewModel().get('techs');;
+                var store = this.getViewModel().get('techs');
+                store.removeAll();
 
                 tech.map(function (t) {
                     var techAdd = Ext.create('FinalTask2.model.Tech', {
@@ -33,32 +34,25 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
 
     onAddClicked: function () {
         var vm = this.getViewModel();
-        var expAdd = Ext.create('FinalTask2.model.Tech', {
-            techName: vm.get('techField'),
-            needDelete: false
-        });
-
-        this.saveTech(expAdd);
-        var s = this.getViewModel().get('techs');;
-        s.add(expAdd);
+        var tech = {
+            techName: vm.get('techField')
+        };
+        this.saveTech(tech, this);
 
         vm.set('techField', null);
     },
 
 
-    saveTech: function (t) {
-        var tech = {
-            techName: t.get('techName'),
-        };
+    saveTech: function (tech, me) {
         Ext.Ajax.request({
             url: 'http://localhost:8080/tech/save',
             method: 'POST',
             jsonData: JSON.stringify(tech),
+            scope: me,
 
             success: function (response, opts) {
                 console.log('Tech saved');
-                var id = Ext.decode(response.responseText);
-                t.set('id', id);
+                this.loadTech();
             },
             failure: function (response, opts) {
                 console.log('Failed saving tech');
@@ -72,18 +66,20 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))
-                s.remove(record);
             }
         });
 
         if (delArr.length > 0) {
+            var me = this;
             Ext.Ajax.request({
                 url: 'http://localhost:8080/tech/delete',
                 method: 'POST',
                 jsonData: JSON.stringify(delArr),
+                scope: me,
 
                 success: function (response, opts) {
                     console.log('Deleted tech');
+                    this.loadTech();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting tech');

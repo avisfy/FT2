@@ -19,9 +19,9 @@ public class TechController {
 
 
     @PostMapping(value = "/save")
-    public ResponseEntity<Integer> saveTech(@RequestBody Tech tech) {
-        Integer newId =  techService.add(tech);
-        return new ResponseEntity<>(newId, HttpStatus.OK);
+    public ResponseEntity saveTech(@RequestBody Tech tech) {
+        techService.add(tech);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping(value = "/load")

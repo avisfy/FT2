@@ -22,8 +22,8 @@ public class ExpService {
         return expDAO.getAll();
     }
 
-    public int add(Exp exp) {
-        return expDAO.add(exp);
+    public void add(Exp exp) {
+        expDAO.add(exp);
     }
 
     public void delete(Exp exp) {

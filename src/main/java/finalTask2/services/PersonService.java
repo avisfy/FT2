@@ -20,8 +20,8 @@ public class PersonService {
         return personDAO.getAll();
     }
 
-    public int add(Person person) {
-        return personDAO.add(person);
+    public void add(Person person) {
+        personDAO.add(person);
     }
 
     public void delete(Person person) {

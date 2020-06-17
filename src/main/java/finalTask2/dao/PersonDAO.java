@@ -29,11 +29,9 @@ public class PersonDAO {
     }
 
 
-    public int add(Person person) {
+    public void add(Person person) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(person);
-        return person.getId();
-
     }
 
 

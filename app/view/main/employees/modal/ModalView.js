@@ -10,7 +10,6 @@ Ext.define('FinalTask2.view.main.employees.modal.ModalView', {
         'FinalTask2.view.main.employees.EmployeesController',
     ],
     controller: 'employees',
-    viewModel: 'modal',
 
 
     layout: {

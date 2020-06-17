@@ -19,7 +19,7 @@ Ext.define('FinalTask2.view.main.cities.AddCitySet', {
         xtype: 'button',
         text: 'Add new city!',
         bind: {
-            disabled: '{isFull}'
+            disabled: '{isFullCity}'
         },
         listeners: {
             click: 'onAddClicked'

@@ -7,7 +7,6 @@ Ext.define('FinalTask2.view.main.person.PersonView', {
         'FinalTask2.view.main.person.PersonController'
     ],
 
-    viewModel: 'person',
     controller: 'person',
 
     bodyPadding: 12,
@@ -30,8 +29,5 @@ Ext.define('FinalTask2.view.main.person.PersonView', {
         xtype: 'person-grid-set',
         flex: 2,
         margin: '0 0 0 5'
-    } ],
-    listeners: {
-        afterrender: 'loadTabs'
-    }
+    } ]
 });

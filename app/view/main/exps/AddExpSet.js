@@ -21,7 +21,7 @@ Ext.define('FinalTask2.view.main.exps.AddExpSet', {
         xtype: 'button',
         text: 'Add new experience!',
         bind: {
-            disabled: '{isFull}'
+            disabled: '{isFullTech}'
         },
         listeners: {
         click: 'onAddClicked'

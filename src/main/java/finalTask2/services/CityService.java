@@ -22,8 +22,8 @@ public class CityService {
         return cityDAO.getAll();
     }
 
-    public int add(City city) {
-        return cityDAO.add(city);
+    public void add(City city) {
+        cityDAO.add(city);
     }
 
     public void delete(City city) {

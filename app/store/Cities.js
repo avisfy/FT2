@@ -13,6 +13,10 @@ Ext.define('FinalTask2.store.Cities', {
         }
     },
 
+    listeners: [{
+        update: 'updateCities'
+    }],
+
     updateCities: function (e, rec, operation, modifiedFieldNames) {
         if(!((modifiedFieldNames[0] === 'needDelete') || (modifiedFieldNames[0] === 'id'))){
             var city = {

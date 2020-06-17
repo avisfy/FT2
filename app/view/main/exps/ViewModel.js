@@ -9,7 +9,7 @@ Ext.define('FinalTask2.view.main.exps.ViewModel', {
     },
 
     formulas: {
-        isFull: function (get) {
+        isFullTech: function (get) {
             var period = get('periodField');
             var unit = get('unitField');
             if (period && unit) {

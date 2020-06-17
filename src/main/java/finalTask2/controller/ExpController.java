@@ -20,9 +20,9 @@ public class ExpController {
 
 
     @PostMapping(value = "/save")
-    public ResponseEntity<Integer> saveExp(@RequestBody Exp exp) {
-        Integer newId =  expService.add(exp);
-        return new ResponseEntity<>(newId, HttpStatus.OK);
+    public ResponseEntity saveExp(@RequestBody Exp exp) {
+        expService.add(exp);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping(value = "/load")

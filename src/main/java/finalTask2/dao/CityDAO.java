@@ -29,10 +29,9 @@ public class CityDAO {
     }
 
 
-    public int add(City city) {
+    public void add(City city) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(city);
-        return city.getId();
 
     }
 

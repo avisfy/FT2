@@ -20,8 +20,8 @@ public class TechService {
         return techDAO.getAll();
     }
 
-    public int add(Tech tech) {
-        return techDAO.add(tech);
+    public void add(Tech tech) {
+        techDAO.add(tech);
     }
 
     public void delete(Tech tech) {

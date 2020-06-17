@@ -29,10 +29,9 @@ public class EmployeeDAO {
         return (List<Employee>) session.createQuery("from Employee").list();
     }
 
-    public int add(Employee emp) {
+    public void add(Employee emp) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(emp);
-        return emp.getId();
 
     }
 

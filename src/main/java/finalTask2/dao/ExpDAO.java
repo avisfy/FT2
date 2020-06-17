@@ -29,11 +29,9 @@ public class ExpDAO {
     }
 
 
-    public int add(Exp exp) {
+    public void add(Exp exp) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(exp);
-        return exp.getId();
-
     }
 
 
