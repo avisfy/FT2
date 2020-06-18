@@ -4,10 +4,10 @@ Ext.define('FinalTask2.view.main.person.PersonGridSet', {
     xtype: 'person-grid-set',
 
     title: 'Person',
-    layout:  'anchor',
+    layout: 'anchor',
 
     defaults: {anchor: '95%'},
     items: [{
         xtype: 'person-grid'
-    } ]
+    }]
 })

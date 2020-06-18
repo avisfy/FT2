@@ -10,20 +10,20 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id", referencedColumnName= "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 
-    @ManyToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "city_id", referencedColumnName= "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
     private City city;
 
-    @ManyToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "tech_id", referencedColumnName= "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tech_id", referencedColumnName = "id")
     private Tech tech;
 
-    @ManyToOne( fetch = FetchType.EAGER)
-    @JoinColumn(name = "exp_id", referencedColumnName= "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "exp_id", referencedColumnName = "id")
     private Exp exp;
 
     public Employee() {

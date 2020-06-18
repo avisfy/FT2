@@ -14,7 +14,7 @@ Ext.define('FinalTask2.store.Person', {
     },
 
     updatePerson: function (e, rec, operation, modifiedFieldNames) {
-        if(!((modifiedFieldNames[0] === 'needDelete') || (modifiedFieldNames[0] === 'id'))){
+        if (!((modifiedFieldNames[0] === 'needDelete') || (modifiedFieldNames[0] === 'id'))) {
             var dateBirth = rec.get('birth').toISOString();
             var birth = dateBirth.slice(0, dateBirth.indexOf('T'));
             var person = {

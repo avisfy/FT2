@@ -5,7 +5,7 @@ Ext.define('FinalTask2.view.main.person.AddPersonSet', {
 
     title: 'Add person',
 
-    layout:  'anchor',
+    layout: 'anchor',
     defaults: {anchor: '95%'},
     defaultType: 'textfield',
 
@@ -33,5 +33,5 @@ Ext.define('FinalTask2.view.main.person.AddPersonSet', {
         listeners: {
             click: 'onAddClicked'
         }
-    } ]
+    }]
 })

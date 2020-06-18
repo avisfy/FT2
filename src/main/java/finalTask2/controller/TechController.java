@@ -31,9 +31,9 @@ public class TechController {
 
 
     @PostMapping(value = "/delete")
-    public ResponseEntity deleteTech(@RequestBody List <Integer> deleteIds) {
+    public ResponseEntity deleteTech(@RequestBody List<Integer> deleteIds) {
         Tech tech;
-        for(Integer id: deleteIds) {
+        for (Integer id : deleteIds) {
             tech = (Tech) techService.getById(id);
             techService.delete(tech);
         }

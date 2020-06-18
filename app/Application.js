@@ -5,13 +5,13 @@
  */
 Ext.define('FinalTask2.Application', {
     extend: 'Ext.app.Application',
-    
+
     name: 'FinalTask2',
 
     stores: [
         // TODO: add global / shared stores here
     ],
-    
+
     launch: function () {
         // TODO - Launch the application
     },

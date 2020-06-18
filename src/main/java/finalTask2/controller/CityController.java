@@ -33,9 +33,9 @@ public class CityController {
 
 
     @PostMapping(value = "/delete")
-    public ResponseEntity deleteCity(@RequestBody List <Integer> deleteIds) {
+    public ResponseEntity deleteCity(@RequestBody List<Integer> deleteIds) {
         City city;
-        for(Integer id: deleteIds) {
+        for (Integer id : deleteIds) {
             city = (City) cityService.getById(id);
             cityService.delete(city);
         }

@@ -4,10 +4,10 @@ Ext.define('FinalTask2.view.main.cities.CitiesGridSet', {
     xtype: 'cities-grid-set',
 
     title: 'Cities',
-    layout:  'anchor',
+    layout: 'anchor',
 
     defaults: {anchor: '95%'},
     items: [{
         xtype: 'cities-grid'
-    } ]
+    }]
 })

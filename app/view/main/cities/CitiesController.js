@@ -1,7 +1,8 @@
 Ext.define('FinalTask2.view.main.cities.CitiesController', {
-    extend: 'Ext.app.ViewController',
+    extend: 'FinalTask2.view.main.employees.EmployeesController',
 
     alias: 'controller.cities',
+
 
     loadCity: function () {
         //var me = Ext.ComponentQuery.query('#cityv')[0];
@@ -13,7 +14,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
 
             success: function (response, opts) {
                 console.log('Load city!');
-                var city= Ext.decode(response.responseText);
+                var city = Ext.decode(response.responseText);
                 var store = this.getViewModel().get('cities');
                 store.removeAll();
 
@@ -32,7 +33,6 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
             }
         })
     },
-
 
 
     onAddClicked: function () {
@@ -85,13 +85,14 @@ Ext.define('FinalTask2.view.main.cities.CitiesController', {
                 success: function (response, opts) {
                     console.log('Deleted cities');
                     this.loadCity();
+                    this.loadEmployee();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting cities');
                 }
             });
         }
-    },
+    }
 });
 
 

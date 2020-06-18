@@ -18,11 +18,11 @@ Ext.define('FinalTask2.store.Cities', {
     }],
 
     updateCities: function (e, rec, operation, modifiedFieldNames) {
-        if(!((modifiedFieldNames[0] === 'needDelete') || (modifiedFieldNames[0] === 'id'))){
+        if (!((modifiedFieldNames[0] === 'needDelete') || (modifiedFieldNames[0] === 'id'))) {
             var city = {
                 id: rec.get('id'),
                 city: rec.get('city'),
-                region: rec.get('region'),
+                region: rec.get('region')
             };
 
             Ext.Ajax.request({

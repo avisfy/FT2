@@ -5,9 +5,9 @@ Ext.define('FinalTask2.view.main.techs.AddTechSet', {
     title: 'Add technology',
 
     layout: 'anchor',
-    defaults: { anchor: '95%'},
+    defaults: {anchor: '95%'},
 
-    items: [ {
+    items: [{
         xtype: 'textfield',
         fieldLabel: 'Technology:',
         bind: '{techField}'
@@ -18,7 +18,7 @@ Ext.define('FinalTask2.view.main.techs.AddTechSet', {
             disabled: '{!techField}'
         },
         listeners: {
-        click: 'onAddClicked'
+            click: 'onAddClicked'
         }
-    } ]
+    }]
 })

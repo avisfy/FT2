@@ -32,9 +32,9 @@ public class ExpController {
 
 
     @PostMapping(value = "/delete")
-    public ResponseEntity deleteExp(@RequestBody List <Integer> deleteIds) {
+    public ResponseEntity deleteExp(@RequestBody List<Integer> deleteIds) {
         Exp exp;
-        for(Integer id: deleteIds) {
+        for (Integer id : deleteIds) {
             exp = (Exp) expService.getById(id);
             expService.delete(exp);
         }

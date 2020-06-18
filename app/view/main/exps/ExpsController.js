@@ -1,5 +1,5 @@
 Ext.define('FinalTask2.view.main.exps.ExpsController', {
-    extend: 'Ext.app.ViewController',
+    extend: 'FinalTask2.view.main.employees.EmployeesController',
 
     alias: 'controller.exps',
 
@@ -84,6 +84,7 @@ Ext.define('FinalTask2.view.main.exps.ExpsController', {
                 success: function (response, opts) {
                     console.log('Deleted exps');
                     this.loadExp();
+                    this.loadEmployee();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting exps');

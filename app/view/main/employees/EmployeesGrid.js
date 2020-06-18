@@ -42,7 +42,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesGrid', {
             text: 'Technology',
             dataIndex: 'techName',
             flex: 2
-        },{
+        }, {
             text: 'Period',
             dataIndex: 'period',
             flex: 1
@@ -68,7 +68,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesGrid', {
             text: 'Email',
             dataIndex: 'email',
             flex: 2
-        },{
+        }, {
             xtype: 'checkcolumn',
             header: 'Delete',
             dataIndex: 'needDelete',

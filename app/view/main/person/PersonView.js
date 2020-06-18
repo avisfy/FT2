@@ -29,5 +29,5 @@ Ext.define('FinalTask2.view.main.person.PersonView', {
         xtype: 'person-grid-set',
         flex: 2,
         margin: '0 0 0 5'
-    } ]
+    }]
 });

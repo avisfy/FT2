@@ -50,8 +50,8 @@ public class EmployeeService {
         return empDAO.getAll();
     }
 
-    public void  add(Employee emp) {
-         empDAO.add(emp);
+    public void add(Employee emp) {
+        empDAO.add(emp);
     }
 
     public void add(int personId, int cityId, int techId, int expId) {

@@ -4,7 +4,7 @@ Ext.define('FinalTask2.view.main.cities.CitiesView', {
     xtype: 'cities-view',
     requires: [
         'FinalTask2.view.main.cities.ViewModel',
-        'FinalTask2.view.main.cities.CitiesController',
+        'FinalTask2.view.main.cities.CitiesController'
     ],
 
     controller: 'cities',
@@ -29,5 +29,5 @@ Ext.define('FinalTask2.view.main.cities.CitiesView', {
         xtype: 'cities-grid-set',
         flex: 2,
         margin: '0 0 0 5'
-    } ]
+    }]
 });

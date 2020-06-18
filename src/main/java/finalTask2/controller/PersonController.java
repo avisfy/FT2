@@ -36,9 +36,9 @@ public class PersonController {
 
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ResponseEntity deletePerson(@RequestBody List <Integer> deleteIds) {
+    public ResponseEntity deletePerson(@RequestBody List<Integer> deleteIds) {
         Person person;
-        for(Integer id: deleteIds) {
+        for (Integer id : deleteIds) {
             person = (Person) personService.getById(id);
             personService.delete(person);
         }

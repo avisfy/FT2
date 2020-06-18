@@ -5,7 +5,7 @@ Ext.define('FinalTask2.view.main.exps.AddExpSet', {
     title: 'Add experience',
 
     layout: 'anchor',
-    defaults: { anchor: '95%'},
+    defaults: {anchor: '95%'},
 
     items: [{
         xtype: 'numberfield',
@@ -24,7 +24,7 @@ Ext.define('FinalTask2.view.main.exps.AddExpSet', {
             disabled: '{isFullTech}'
         },
         listeners: {
-        click: 'onAddClicked'
+            click: 'onAddClicked'
         }
-    } ]
+    }]
 })

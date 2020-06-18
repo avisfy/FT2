@@ -20,7 +20,7 @@ public class Exp {
     private String unit;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "exp", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "exp", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Employee> emps;
 
     public List<Employee> getEmps() {

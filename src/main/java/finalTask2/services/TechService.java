@@ -12,7 +12,7 @@ public class TechService {
     private TechDAO techDAO;
 
     @Autowired
-    public void setTechDAO(TechDAO  techDAO) {
+    public void setTechDAO(TechDAO techDAO) {
         this.techDAO = techDAO;
     }
 

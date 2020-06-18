@@ -1,5 +1,5 @@
 Ext.define('FinalTask2.view.main.person.PersonController', {
-    extend: 'Ext.app.ViewController',
+    extend: 'FinalTask2.view.main.employees.EmployeesController',
 
     alias: 'controller.person',
 
@@ -92,6 +92,7 @@ Ext.define('FinalTask2.view.main.person.PersonController', {
                 success: function (response, opts) {
                     console.log('Deleted person');
                     this.loadPerson();
+                    this.loadEmployee();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting person');

@@ -4,10 +4,10 @@ Ext.define('FinalTask2.view.main.exps.ExpsGridSet', {
     xtype: 'exps-grid-set',
 
     title: 'Experiences',
-    layout:  'anchor',
+    layout: 'anchor',
 
     defaults: {anchor: '95%'},
     items: [{
         xtype: 'exps-grid'
-    } ]
+    }]
 })

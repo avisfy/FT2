@@ -4,18 +4,15 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
     alias: 'controller.employees',
 
 
-    loadEmployee: function () {
-        //debugger;
-        var me = this;
+    loadEmployee: function (view) {
         Ext.Ajax.request({
             url: 'http://localhost:8080/employee/load',
             method: 'GET',
-            scope: me,
-            async: false,
+            scope: this,
 
             success: function (response, opts) {
                 console.log('Load employee!');
-                var employee= Ext.decode(response.responseText);
+                var employee = Ext.decode(response.responseText);
                 //debugger;
                 var store = this.getViewModel().get('employees');
                 store.removeAll();
@@ -35,6 +32,10 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
                     });
                     store.add(e);
                 })
+                if (view) {
+                    view.close();
+                }
+
             },
             failure: function (response, opts) {
                 console.log('Failed loading employees');
@@ -49,7 +50,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
         var m = window.show();
     },
 
-   onRemoveClicked: function () {
+    onRemoveClicked: function () {
         var delArr = new Array();
         var s = this.getViewModel().get('employees');
         s.each(function (record) {
@@ -85,22 +86,21 @@ Ext.define('FinalTask2.view.main.employees.EmployeesController', {
         var cityId = vm.get('cityIdField');
         var techId = vm.get('techIdField');
         var expId = vm.get('expIdField');
-        this.saveEmployee(personId, cityId, techId, expId, this);
-        this.loadEmployee();
-        this.getView().close();
+        var view = this.getView();
+        this.saveEmployee(personId, cityId, techId, expId, view);
     },
 
-    saveEmployee: function (personId, cityId, techId, expId, me) {
+    saveEmployee: function (personId, cityId, techId, expId, view) {
         var empIds = [personId, cityId, techId, expId];
 
         Ext.Ajax.request({
             url: 'http://localhost:8080/employee/save',
             method: 'POST',
             jsonData: JSON.stringify(empIds),
-            async: false,
-            scope: me,
+            scope: this,
             success: function (response, opts) {
                 console.log('Employee saved');
+                this.loadEmployee(view);
             },
             failure: function (response, opts) {
                 console.log('Failed saving employee');

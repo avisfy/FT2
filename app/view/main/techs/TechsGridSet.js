@@ -4,10 +4,10 @@ Ext.define('FinalTask2.view.main.techs.TechsGridSet', {
     xtype: 'techs-grid-set',
 
     title: 'Technologies',
-    layout:  'anchor',
+    layout: 'anchor',
 
     defaults: {anchor: '95%'},
     items: [{
         xtype: 'techs-grid'
-    } ]
+    }]
 })

@@ -26,7 +26,7 @@ public class Person {
     private Date birth;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Employee> emps;
 
     public List<Employee> getEmps() {

@@ -5,7 +5,7 @@ Ext.define('FinalTask2.view.main.employees.EmployeesSet', {
     title: 'Add experience',
 
     layout: 'anchor',
-    defaults: { anchor: '98%'},
+    defaults: {anchor: '98%'},
 
     items: [{
         xtype: 'employees-grid'

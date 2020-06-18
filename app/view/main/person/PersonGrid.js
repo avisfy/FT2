@@ -35,19 +35,19 @@ Ext.define('FinalTask2.view.main.person.PersonGrid', {
         }],
 
     columns: [
-       {
+        {
             text: 'Surname Name',
             dataIndex: 'surname_name',
             flex: 3,
             editor: {
-               allowBlank: false,
+                allowBlank: false
             }
         }, {
             text: 'Email',
             dataIndex: 'email',
             flex: 2,
             editor: {
-                allowBlank: false,
+                allowBlank: false
             }
         }, {
             text: 'Date of birth',

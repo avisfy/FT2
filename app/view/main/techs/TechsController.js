@@ -1,5 +1,5 @@
 Ext.define('FinalTask2.view.main.techs.TechsController', {
-    extend: 'Ext.app.ViewController',
+    extend: 'FinalTask2.view.main.employees.EmployeesController',
 
     alias: 'controller.techs',
 
@@ -62,7 +62,8 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
 
     onRemoveClicked: function () {
         var delArr = new Array();
-        var s = this.getViewModel().get('techs');;
+        var s = this.getViewModel().get('techs');
+        ;
         s.each(function (record) {
             if (record.get('needDelete')) {
                 delArr.push(record.get('id'))
@@ -80,13 +81,14 @@ Ext.define('FinalTask2.view.main.techs.TechsController', {
                 success: function (response, opts) {
                     console.log('Deleted tech');
                     this.loadTech();
+                    this.loadEmployee();
                 },
                 failure: function (response, opts) {
                     console.log('Failed deleting tech');
                 }
             });
         }
-    },
+    }
 });
 
 
